@@ -6,7 +6,7 @@ import java.util.*;
 
 public class MemoryMemberRepository implements MemberRepository {
 
-    /*
+    /**
      * 실무에서는 동시성 문제가 발생할 수 있어 공유되는 변수 선언에 주의해야 함
      * 실무에서는 ConcurrentHashMap, AtomicLong 사용 고려
      */
@@ -36,5 +36,9 @@ public class MemoryMemberRepository implements MemberRepository {
     @Override
     public List<Member> findAll() {
         return new ArrayList<>(store.values());
+    }
+
+    public void clearStore() {
+        store.clear();
     }
 }
