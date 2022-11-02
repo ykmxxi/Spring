@@ -6,7 +6,10 @@ import java.util.*;
 
 public class MemoryMemberRepository implements MemberRepository {
 
-    // 실무에서는 동시성 문제가 발생할 수 있어 공유되는 변수 선언에 주의해야 함
+    /*
+     * 실무에서는 동시성 문제가 발생할 수 있어 공유되는 변수 선언에 주의해야 함
+     * 실무에서는 ConcurrentHashMap, AtomicLong 사용 고려
+     */
     private static Map<Long, Member> store = new HashMap<>();
     private static long sequence = 0L;
 
