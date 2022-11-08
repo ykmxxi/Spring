@@ -5,7 +5,7 @@ import hello.hellospring.domain.Member;
 import java.util.*;
 import org.springframework.stereotype.Repository;
 
-@Repository
+// @Repository
 public class MemoryMemberRepository implements MemberRepository {
 
     /**
