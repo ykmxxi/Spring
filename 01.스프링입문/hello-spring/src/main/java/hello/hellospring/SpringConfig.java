@@ -22,25 +22,37 @@ public class SpringConfig {
     public SpringConfig(DataSource dataSource) {
         this.dataSource = dataSource;
     }
-     */
+    */
 
+    /*
     private EntityManager em;
 
     @Autowired
     public SpringConfig(EntityManager em) {
         this.em = em;
     }
+     */
+    private final MemberRepository memberRepository;
 
-    @Bean
-    public MemberService memberService() {
-        return new MemberService(memberRepository());
+    @Autowired // 생성자가 하나이기 때문에 생략 가능
+    public SpringConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
+    // 스프링 데이터 JPA가 SpringDataJpaMemberRepository를 스프링 빈으로 자동 등록
+    @Bean
+    public MemberService memberService() {
+        return new MemberService(memberRepository);
+    }
+
+    /*
     @Bean
     public MemberRepository memberRepository() {
         // return new MemoryMemberRepository();
         // return new JdbcMemberRepository(dataSource);
         // return new JdbcTemplateMemberRepository(dataSource);
-        return new JpaMemberRepository(em);
+        // return new JpaMemberRepository(em);
     }
+
+     */
 }
