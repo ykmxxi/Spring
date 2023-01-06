@@ -26,8 +26,8 @@ public class MemberController {
     }
 
     /**
-     * @GetMapping  은 주로 데이터를 조회 할 때 사용
-     * @PostMapping 은 주로 데이터 등록 할 때 사용
+     * .@GetMapping  은 주로 데이터를 조회 할 때 사용
+     * .@PostMapping 은 주로 데이터 등록 할 때 사용
      */
     @PostMapping("/members/new")
     public String create(MemberForm form) {
