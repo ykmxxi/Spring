@@ -1,5 +1,6 @@
 package hello.hellospring;
 
+import hello.hellospring.aop.TimeTraceAop;
 import hello.hellospring.repository.JdbcMemberRepository;
 import hello.hellospring.repository.JdbcTemplateMemberRepository;
 import hello.hellospring.repository.JpaMemberRepository;
@@ -52,6 +53,16 @@ public class SpringConfig {
         // return new JdbcMemberRepository(dataSource);
         // return new JdbcTemplateMemberRepository(dataSource);
         // return new JpaMemberRepository(em);
+    }
+
+     */
+
+    /*
+    * @Component 대신 빈에 등록해서 사용해도 됨.
+
+    @Bean
+    public TimeTraceAop timeTraceAop() {
+        return new TimeTraceAop();
     }
 
      */
