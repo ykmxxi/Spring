@@ -5,7 +5,6 @@ import com.devmaker.dmaker.repository.DeveloperRepository;
 import com.devmaker.dmaker.type.DeveloperLevel;
 import com.devmaker.dmaker.type.DeveloperSkillType;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,27 +19,16 @@ public class DmakerService {
 
     @Transactional
     public void createDeveloper() {
-        EntityTransaction transaction = em.getTransaction();
+        // business logic start
+        Developer developer = Developer.builder()
+                .developerLevel(DeveloperLevel.JUNIOR)
+                .developerSkillType(DeveloperSkillType.BACK_END)
+                .experiencedYears(2)
+                .name("Kim")
+                .age(28)
+                .build();
 
-        try {
-            transaction.begin();
-
-            // business logic start
-            Developer developer = Developer.builder()
-                    .developerLevel(DeveloperLevel.JUNIOR)
-                    .developerSkillType(DeveloperSkillType.BACK_END)
-                    .experiencedYears(2)
-                    .name("Kim")
-                    .age(28)
-                    .build();
-
-            developerRepository.save(developer); // 영속화, DB에 저장
-            // business logic end
-
-            transaction.commit();
-        } catch (Exception e) {
-            log.info(e.getMessage());
-        }
-
+        developerRepository.save(developer); // 영속화, DB에 저장
+        // business logic end
     }
 }
