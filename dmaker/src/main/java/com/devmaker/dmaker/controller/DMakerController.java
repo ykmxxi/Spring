@@ -1,17 +1,21 @@
 package com.devmaker.dmaker.controller;
 
-import com.devmaker.dmaker.service.DmakerService;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import javax.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.devmaker.dmaker.dto.CreateDeveloper;
+import com.devmaker.dmaker.service.DmakerService;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor // 자동으로 생성자를 만들어 Spring Application Context 위에 주입
 @Slf4j
@@ -31,11 +35,12 @@ public class DMakerController {
 	}
 
 	@PostMapping("/create-developer")
-	public List<String> createDevelopers() {
-		// GET / developers HTTP/1.1
-		log.info("GET / developers HTTP/1.1");
+	public List<String> createDevelopers(
+		@Valid @RequestBody CreateDeveloper.Request request
+	) {
+		log.info("request: {}", request);
 
-		dmakerService.createDeveloper();
+		dmakerService.createDeveloper(request);
 
 		return Collections.singletonList("Kim");
 	}

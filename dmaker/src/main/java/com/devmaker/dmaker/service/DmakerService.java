@@ -1,17 +1,18 @@
 package com.devmaker.dmaker.service;
 
+import javax.persistence.EntityManager;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.devmaker.dmaker.dto.CreateDeveloper;
 import com.devmaker.dmaker.entity.Developer;
 import com.devmaker.dmaker.repository.DeveloperRepository;
 import com.devmaker.dmaker.type.DeveloperLevel;
 import com.devmaker.dmaker.type.DeveloperSkillType;
 
-import javax.persistence.EntityManager;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +22,7 @@ public class DmakerService {
 	private final EntityManager em;
 
 	@Transactional
-	public void createDeveloper() {
+	public void createDeveloper(CreateDeveloper.Request request) {
 		// business logic start
 		Developer developer = Developer.builder()
 			.developerLevel(DeveloperLevel.JUNIOR)
