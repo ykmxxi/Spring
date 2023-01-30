@@ -1,16 +1,18 @@
 package com.devmaker.dmaker.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devmaker.dmaker.dto.CreateDeveloper;
+import com.devmaker.dmaker.dto.DeveloperDetailDto;
+import com.devmaker.dmaker.dto.DeveloperDto;
 import com.devmaker.dmaker.service.DmakerService;
 
 import lombok.RequiredArgsConstructor;
@@ -26,11 +28,21 @@ public class DMakerController {
 	private final DmakerService dmakerService;
 
 	@GetMapping("/developers")
-	public List<String> getAllDevelopers() {
+	public List<DeveloperDto> getAllDevelopers() {
 		// GET / developers HTTP/1.1
 		log.info("GET / developers HTTP/1.1");
 
-		return Arrays.asList("snow", "Elsa", "Olaf");
+		return dmakerService.getAllDevelopers();
+	}
+
+	@GetMapping("/developer/{memberId}")
+	public DeveloperDetailDto getDeveloperDetail(
+		@PathVariable String memberId
+	) {
+		// GET / developers HTTP/1.1
+		log.info("GET / developers HTTP/1.1");
+
+		return dmakerService.getDeveloperDetail(memberId);
 	}
 
 	@PostMapping("/create-developer")
