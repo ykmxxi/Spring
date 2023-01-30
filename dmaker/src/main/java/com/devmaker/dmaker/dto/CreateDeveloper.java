@@ -5,6 +5,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.devmaker.dmaker.entity.Developer;
 import com.devmaker.dmaker.type.DeveloperLevel;
 import com.devmaker.dmaker.type.DeveloperSkillType;
 
@@ -53,7 +54,15 @@ public class CreateDeveloper {
 		private DeveloperLevel developerLevel;
 		private DeveloperSkillType developerSkillType;
 		private Integer experienceYears;
-
 		private String memberId;
+
+		public static Response fromEntity(Developer developer) {
+			return Response.builder()
+				.developerLevel(developer.getDeveloperLevel())
+				.developerSkillType(developer.getDeveloperSkillType())
+				.experienceYears(developer.getExperiencedYears())
+				.memberId(developer.getMemberId())
+				.build();
+		}
 	}
 }
