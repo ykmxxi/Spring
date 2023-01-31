@@ -7,12 +7,14 @@ import javax.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devmaker.dmaker.dto.CreateDeveloper;
 import com.devmaker.dmaker.dto.DeveloperDetailDto;
 import com.devmaker.dmaker.dto.DeveloperDto;
+import com.devmaker.dmaker.dto.EditDeveloper;
 import com.devmaker.dmaker.service.DmakerService;
 
 import lombok.RequiredArgsConstructor;
@@ -53,4 +55,14 @@ public class DMakerController {
 		return dmakerService.createDeveloper(request);
 	}
 
+	// put: 모든 정보 수정, fetch: 리소스 중 특정 데이터 수정
+	@PutMapping("/developer/{memberId}")
+	public DeveloperDetailDto editDeveloper(
+		@PathVariable String memberId,
+		@Valid @RequestBody EditDeveloper.Request request
+	) {
+		log.info("GET /developers HTTP/1.1");
+
+		return dmakerService.editDeveloper(memberId, request);
+	}
 }
