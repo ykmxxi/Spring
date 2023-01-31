@@ -1,5 +1,6 @@
 package com.devmaker.dmaker.dto;
 
+import com.devmaker.dmaker.code.StatusCode;
 import com.devmaker.dmaker.entity.Developer;
 import com.devmaker.dmaker.type.DeveloperLevel;
 import com.devmaker.dmaker.type.DeveloperSkillType;
@@ -22,6 +23,7 @@ public class DeveloperDetailDto {
 	private String memberId; // 회사Id
 	private String name; // 이름
 	private Integer age; // 나이
+	private StatusCode statusCode;
 
 	public static DeveloperDetailDto fromEntity(Developer developer) {
 		return DeveloperDetailDto.builder()
@@ -31,6 +33,7 @@ public class DeveloperDetailDto {
 			.memberId(developer.getMemberId())
 			.name(developer.getName())
 			.age(developer.getAge())
+			.statusCode(developer.getStatusCode())
 			.build();
 	}
 }

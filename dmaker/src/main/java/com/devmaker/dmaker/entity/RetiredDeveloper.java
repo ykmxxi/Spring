@@ -31,8 +31,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @EntityListeners(AuditingEntityListener.class) // auditing 기능 사용
-public class Developer {
-
+public class RetiredDeveloper {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Long id;

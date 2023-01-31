@@ -2,7 +2,7 @@ PUT http://localhost:8080/developer/Micky
 Content-Type: application/json
 
 {
-  "developerLevel": "SENIOR",
+  "developerLevel": "JUNGNIOR",
   "developerSkillType": "FULL_STACK",
-  "experienceYears": 13
+  "experienceYears": 7
 }

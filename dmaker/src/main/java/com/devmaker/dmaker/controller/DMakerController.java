@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +35,7 @@ public class DMakerController {
 		// GET / developers HTTP/1.1
 		log.info("GET / developers HTTP/1.1");
 
-		return dmakerService.getAllDevelopers();
+		return dmakerService.getAllEmployedDevelopers();
 	}
 
 	@GetMapping("/developer/{memberId}")
@@ -64,5 +65,11 @@ public class DMakerController {
 		log.info("GET /developers HTTP/1.1");
 
 		return dmakerService.editDeveloper(memberId, request);
+	}
+
+	@DeleteMapping("/developer/{memberId}")
+	public DeveloperDetailDto deleteDeveloper(
+		@PathVariable String memberId) {
+		return dmakerService.deleteDeveloper(memberId);
 	}
 }
