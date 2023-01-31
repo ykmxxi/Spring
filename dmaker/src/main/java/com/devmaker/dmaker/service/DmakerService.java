@@ -54,9 +54,10 @@ public class DmakerService {
 		// business logic validation
 		validateDeveloperLevel(request.getDeveloperLevel(), request.getExperienceYears());
 
-		developerRepository.findByMemberId(request.getMemberId()).ifPresent((developer -> {
-			throw new DMakerException(DUPLICATED_MEMBER_ID);
-		}));
+		developerRepository.findByMemberId(request.getMemberId())
+			.ifPresent((developer -> {
+				throw new DMakerException(DUPLICATED_MEMBER_ID);
+			}));
 	}
 
 	private static void validateDeveloperLevel(DeveloperLevel developerLevel, Integer experienceYears) {
@@ -64,7 +65,7 @@ public class DmakerService {
 			throw new DMakerException(LEVEL_EXPERIENCE_YEARS_NOT_MATCHED);
 		}
 
-		if (developerLevel == DeveloperLevel.JUNGNIOR && experienceYears < 4 || experienceYears > 10) {
+		if (developerLevel == DeveloperLevel.JUNGNIOR && (experienceYears < 4 || experienceYears > 10)) {
 			throw new DMakerException(LEVEL_EXPERIENCE_YEARS_NOT_MATCHED);
 		}
 
