@@ -2,21 +2,27 @@ package com.devmaker.dmaker.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devmaker.dmaker.dto.CreateDeveloper;
+import com.devmaker.dmaker.dto.DMakerErrorResponse;
 import com.devmaker.dmaker.dto.DeveloperDetailDto;
 import com.devmaker.dmaker.dto.DeveloperDto;
 import com.devmaker.dmaker.dto.EditDeveloper;
 import com.devmaker.dmaker.service.DmakerService;
+import com.devmaker.exception.DMakerException;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -71,5 +77,18 @@ public class DMakerController {
 	public DeveloperDetailDto deleteDeveloper(
 		@PathVariable String memberId) {
 		return dmakerService.deleteDeveloper(memberId);
+	}
+
+	// Controller 에서 발생하는 예외를 처리
+	@ResponseStatus(value = HttpStatus.CONFLICT)
+	@ExceptionHandler(DMakerException.class)
+	public DMakerErrorResponse handleException(DMakerException e, HttpServletRequest request) {
+		log.error("errorCode: {}, url: {}, message: {}",
+			e.getDMakerErrorCode(), request.getRequestURI(), e.getDetailMessage());
+
+		return DMakerErrorResponse.builder()
+			.errorCode(e.getDMakerErrorCode())
+			.errorMessage(e.getDetailMessage())
+			.build();
 	}
 }
