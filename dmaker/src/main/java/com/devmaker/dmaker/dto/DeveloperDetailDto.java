@@ -29,7 +29,7 @@ public class DeveloperDetailDto {
 		return DeveloperDetailDto.builder()
 			.developerLevel(developer.getDeveloperLevel())
 			.developerSkillType(developer.getDeveloperSkillType())
-			.experiencedYears(developer.getExperiencedYears())
+			.experiencedYears(developer.getExperienceYears())
 			.memberId(developer.getMemberId())
 			.name(developer.getName())
 			.age(developer.getAge())

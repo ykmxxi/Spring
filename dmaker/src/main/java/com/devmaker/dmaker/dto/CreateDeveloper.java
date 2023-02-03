@@ -60,7 +60,7 @@ public class CreateDeveloper {
 			return Response.builder()
 				.developerLevel(developer.getDeveloperLevel())
 				.developerSkillType(developer.getDeveloperSkillType())
-				.experienceYears(developer.getExperiencedYears())
+				.experienceYears(developer.getExperienceYears())
 				.memberId(developer.getMemberId())
 				.build();
 		}

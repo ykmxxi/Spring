@@ -43,7 +43,7 @@ public class Developer {
 	@Enumerated(EnumType.STRING)
 	private DeveloperSkillType developerSkillType; // 분야
 
-	private Integer experiencedYears; // 경력
+	private Integer experienceYears; // 경력
 	private String memberId; // 회사Id
 	private String name; // 이름
 	private Integer age; // 나이

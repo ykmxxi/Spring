@@ -38,7 +38,7 @@ public class DmakerService {
 		Developer developer = Developer.builder()
 			.developerLevel(request.getDeveloperLevel())
 			.developerSkillType(request.getDeveloperSkillType())
-			.experiencedYears(request.getExperienceYears())
+			.experienceYears(request.getExperienceYears())
 			.memberId(request.getMemberId())
 			.name(request.getName())
 			.age(request.getAge())
@@ -96,7 +96,7 @@ public class DmakerService {
 
 		developer.setDeveloperLevel(request.getDeveloperLevel());
 		developer.setDeveloperSkillType(request.getDeveloperSkillType());
-		developer.setExperiencedYears(request.getExperienceYears());
+		developer.setExperienceYears(request.getExperienceYears());
 
 		return DeveloperDetailDto.fromEntity(developer);
 	}
