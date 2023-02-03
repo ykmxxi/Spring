@@ -1,6 +1,4 @@
-package com.devmaker.exception;
-
-import static com.devmaker.exception.DMakerErrorCode.*;
+package com.devmaker.dmaker.exception;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -42,8 +40,8 @@ public class DMakerExceptionHandler {
 			request.getRequestURI(), e.getMessage());
 
 		return DMakerErrorResponse.builder()
-			.errorCode(INVALID_REQUEST)
-			.errorMessage(INVALID_REQUEST.getMessage())
+			.errorCode(DMakerErrorCode.INVALID_REQUEST)
+			.errorMessage(DMakerErrorCode.INVALID_REQUEST.getMessage())
 			.build();
 	}
 
@@ -54,8 +52,8 @@ public class DMakerExceptionHandler {
 			request.getRequestURI(), e.getMessage());
 
 		return DMakerErrorResponse.builder()
-			.errorCode(INTERNAL_SERVER_ERROR)
-			.errorMessage(INTERNAL_SERVER_ERROR.getMessage())
+			.errorCode(DMakerErrorCode.INTERNAL_SERVER_ERROR)
+			.errorMessage(DMakerErrorCode.INTERNAL_SERVER_ERROR.getMessage())
 			.build();
 	}
 }

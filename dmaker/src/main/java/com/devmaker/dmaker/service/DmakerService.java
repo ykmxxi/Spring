@@ -1,6 +1,6 @@
 package com.devmaker.dmaker.service;
 
-import static com.devmaker.exception.DMakerErrorCode.*;
+import static com.devmaker.dmaker.exception.DMakerErrorCode.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,10 +15,10 @@ import com.devmaker.dmaker.dto.DeveloperDto;
 import com.devmaker.dmaker.dto.EditDeveloper;
 import com.devmaker.dmaker.entity.Developer;
 import com.devmaker.dmaker.entity.RetiredDeveloper;
+import com.devmaker.dmaker.exception.DMakerException;
 import com.devmaker.dmaker.repository.DeveloperRepository;
 import com.devmaker.dmaker.repository.RetiredDeveloperRepository;
 import com.devmaker.dmaker.type.DeveloperLevel;
-import com.devmaker.exception.DMakerException;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
