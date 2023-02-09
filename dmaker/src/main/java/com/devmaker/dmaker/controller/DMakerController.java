@@ -40,7 +40,7 @@ public class DMakerController {
 
 	@GetMapping("/developer/{memberId}")
 	public DeveloperDetailDto getDeveloperDetail(
-		@PathVariable String memberId
+		@PathVariable final String memberId
 	) {
 		// GET / developers HTTP/1.1
 		log.info("GET / developers HTTP/1.1");
@@ -59,7 +59,7 @@ public class DMakerController {
 	// put: 모든 정보 수정, fetch: 리소스 중 특정 데이터 수정
 	@PutMapping("/developer/{memberId}")
 	public DeveloperDetailDto editDeveloper(
-		@PathVariable String memberId,
+		@PathVariable final String memberId,
 		@Valid @RequestBody EditDeveloper.Request request
 	) {
 		log.info("GET /developers HTTP/1.1");
@@ -69,7 +69,7 @@ public class DMakerController {
 
 	@DeleteMapping("/developer/{memberId}")
 	public DeveloperDetailDto deleteDeveloper(
-		@PathVariable String memberId) {
+		@PathVariable final String memberId) {
 		return dmakerService.deleteDeveloper(memberId);
 	}
 }
