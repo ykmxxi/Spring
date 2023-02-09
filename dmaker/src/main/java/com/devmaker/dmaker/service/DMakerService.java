@@ -20,6 +20,7 @@ import com.devmaker.dmaker.repository.DeveloperRepository;
 import com.devmaker.dmaker.repository.RetiredDeveloperRepository;
 import com.devmaker.dmaker.type.DeveloperLevel;
 
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -50,7 +51,7 @@ public class DMakerService {
 		return CreateDeveloper.Response.fromEntity(developer);
 	}
 
-	private void validateCreateDeveloperRequest(CreateDeveloper.Request request) {
+	private void validateCreateDeveloperRequest(@NonNull CreateDeveloper.Request request) {
 		// business logic validation
 		validateDeveloperLevel(request.getDeveloperLevel(), request.getExperienceYears());
 
@@ -91,7 +92,7 @@ public class DMakerService {
 
 	@Transactional
 	public DeveloperDetailDto editDeveloper(String memberId, EditDeveloper.Request request) {
-		validateEditDeveloperRequest(request, memberId);
+		validateDeveloperLevel(request.getDeveloperLevel(), request.getExperienceYears());
 
 		Developer developer = developerRepository.findByMemberId(memberId)
 			.orElseThrow(() -> new DMakerException(NO_DEVELOPER));
@@ -101,10 +102,6 @@ public class DMakerService {
 		developer.setExperienceYears(request.getExperienceYears());
 
 		return DeveloperDetailDto.fromEntity(developer);
-	}
-
-	private void validateEditDeveloperRequest(EditDeveloper.Request request, String memberId) {
-		validateDeveloperLevel(request.getDeveloperLevel(), request.getExperienceYears());
 	}
 
 	@Transactional
