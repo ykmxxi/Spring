@@ -74,6 +74,7 @@ public class DmakerService {
 		}
 	}
 
+	@Transactional(readOnly = true)
 	public List<DeveloperDto> getAllEmployedDevelopers() {
 		return developerRepository.findDevelopersByStatusCodeEquals(StatusCode.EMPLOYED)
 			.stream()
@@ -81,6 +82,7 @@ public class DmakerService {
 			.collect(Collectors.toList());
 	}
 
+	@Transactional(readOnly = true)
 	public DeveloperDetailDto getDeveloperDetail(String memberId) {
 		return developerRepository.findByMemberId(memberId)
 			.map(DeveloperDetailDto::fromEntity)
