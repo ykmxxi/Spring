@@ -17,7 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.devmaker.dmaker.dto.DeveloperDto;
-import com.devmaker.dmaker.service.DmakerService;
+import com.devmaker.dmaker.service.DMakerService;
 import com.devmaker.dmaker.type.DeveloperLevel;
 import com.devmaker.dmaker.type.DeveloperSkillType;
 
@@ -27,7 +27,7 @@ class DMakerControllerTest {
 	private MockMvc mockMvc;
 
 	@MockBean
-	private DmakerService dmakerService;
+	private DMakerService dmakerService;
 
 	protected MediaType contentType = new MediaType(
 		MediaType.APPLICATION_JSON.getType(),

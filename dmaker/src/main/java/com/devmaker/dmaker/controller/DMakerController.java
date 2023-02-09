@@ -16,7 +16,7 @@ import com.devmaker.dmaker.dto.CreateDeveloper;
 import com.devmaker.dmaker.dto.DeveloperDetailDto;
 import com.devmaker.dmaker.dto.DeveloperDto;
 import com.devmaker.dmaker.dto.EditDeveloper;
-import com.devmaker.dmaker.service.DmakerService;
+import com.devmaker.dmaker.service.DMakerService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 // 사용자 요청을 받아 Json 형태로 응답을 내려준다.
 public class DMakerController {
 	// service 빈 주입, Spring Application Context 위에 주입
-	private final DmakerService dmakerService;
+	private final DMakerService dmakerService;
 
 	@GetMapping("/developers")
 	public List<DeveloperDto> getAllDevelopers() {

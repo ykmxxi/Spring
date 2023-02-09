@@ -24,7 +24,7 @@ import com.devmaker.dmaker.type.DeveloperLevel;
 import com.devmaker.dmaker.type.DeveloperSkillType;
 
 @ExtendWith(MockitoExtension.class)
-class DmakerServiceTest {
+class DMakerServiceTest {
 	@Mock
 	private DeveloperRepository developerRepository;
 
@@ -33,7 +33,7 @@ class DmakerServiceTest {
 
 	@InjectMocks
 	// 위에서 선언한 두 개의 Mock 을 빈에 주입
-	private DmakerService dmakerService;
+	private DMakerService dmakerService;
 
 	private final Developer defaultDeveloper = Developer.builder()
 		.developerLevel(DeveloperLevel.SENIOR)

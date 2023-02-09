@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class DmakerService {
+public class DMakerService {
 	private final DeveloperRepository developerRepository;
 	private final RetiredDeveloperRepository retiredDeveloperRepository;
 
