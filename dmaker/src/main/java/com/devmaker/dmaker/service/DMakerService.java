@@ -1,6 +1,5 @@
 package com.devmaker.dmaker.service;
 
-import static com.devmaker.dmaker.constant.DMakerConstant.*;
 import static com.devmaker.dmaker.exception.DMakerErrorCode.*;
 
 import java.util.List;
@@ -19,7 +18,6 @@ import com.devmaker.dmaker.entity.RetiredDeveloper;
 import com.devmaker.dmaker.exception.DMakerException;
 import com.devmaker.dmaker.repository.DeveloperRepository;
 import com.devmaker.dmaker.repository.RetiredDeveloperRepository;
-import com.devmaker.dmaker.type.DeveloperLevel;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -56,29 +54,12 @@ public class DMakerService {
 
 	private void validateCreateDeveloperRequest(@NonNull CreateDeveloper.Request request) {
 		// business logic validation
-		validateDeveloperLevel(request.getDeveloperLevel(), request.getExperienceYears());
+		request.getDeveloperLevel().validateExperienceYears(request.getExperienceYears());
 
 		developerRepository.findByMemberId(request.getMemberId())
 			.ifPresent((developer -> {
 				throw new DMakerException(DUPLICATED_MEMBER_ID);
 			}));
-	}
-
-	private static void validateDeveloperLevel(DeveloperLevel developerLevel, Integer experienceYears) {
-		if (developerLevel == DeveloperLevel.SENIOR
-			&& experienceYears < MIN_SENIOR_EXPERIENCE_YEARS) {
-			throw new DMakerException(LEVEL_EXPERIENCE_YEARS_NOT_MATCHED);
-		}
-
-		if (developerLevel == DeveloperLevel.JUNGNIOR
-			&& (experienceYears < MAX_JUNIOR_EXPERIENCE_YEARS || experienceYears > MIN_SENIOR_EXPERIENCE_YEARS)) {
-			throw new DMakerException(LEVEL_EXPERIENCE_YEARS_NOT_MATCHED);
-		}
-
-		if (developerLevel == DeveloperLevel.JUNIOR
-			&& experienceYears > MAX_JUNIOR_EXPERIENCE_YEARS) {
-			throw new DMakerException(LEVEL_EXPERIENCE_YEARS_NOT_MATCHED);
-		}
 	}
 
 	@Transactional(readOnly = true)
@@ -101,7 +82,7 @@ public class DMakerService {
 
 	@Transactional
 	public DeveloperDetailDto editDeveloper(String memberId, EditDeveloper.Request request) {
-		validateDeveloperLevel(request.getDeveloperLevel(), request.getExperienceYears());
+		request.getDeveloperLevel().validateExperienceYears(request.getExperienceYears());
 
 		return DeveloperDetailDto.fromEntity(
 			getUpdatedDeveloperFromRequest(
