@@ -73,6 +73,8 @@ class DMakerServiceTest {
 		// given
 		given(developerRepository.findByMemberId(anyString()))
 			.willReturn(Optional.empty());
+		given(developerRepository.save(any()))
+			.willReturn(defaultDeveloper);
 		// save 된 내용을 capture
 		ArgumentCaptor<Developer> captor = ArgumentCaptor.forClass(Developer.class);
 
