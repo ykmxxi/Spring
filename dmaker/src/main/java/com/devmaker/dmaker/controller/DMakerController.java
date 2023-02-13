@@ -28,14 +28,14 @@ import lombok.extern.slf4j.Slf4j;
 // 사용자 요청을 받아 Json 형태로 응답을 내려준다.
 public class DMakerController {
 	// service 빈 주입, Spring Application Context 위에 주입
-	private final DMakerService dmakerService;
+	private final DMakerService dMakerService;
 
 	@GetMapping("/developers")
 	public List<DeveloperDto> getAllDevelopers() {
 		// GET / developers HTTP/1.1
 		log.info("GET / developers HTTP/1.1");
 
-		return dmakerService.getAllEmployedDevelopers();
+		return dMakerService.getAllEmployedDevelopers();
 	}
 
 	@GetMapping("/developer/{memberId}")
@@ -45,7 +45,7 @@ public class DMakerController {
 		// GET / developers HTTP/1.1
 		log.info("GET / developers HTTP/1.1");
 
-		return dmakerService.getDeveloperDetail(memberId);
+		return dMakerService.getDeveloperDetail(memberId);
 	}
 
 	@PostMapping("/create-developer")
@@ -53,7 +53,7 @@ public class DMakerController {
 		@Valid @RequestBody CreateDeveloper.Request request
 	) {
 		log.info("request: {}", request);
-		return dmakerService.createDeveloper(request);
+		return dMakerService.createDeveloper(request);
 	}
 
 	// put: 모든 정보 수정, fetch: 리소스 중 특정 데이터 수정
@@ -64,12 +64,12 @@ public class DMakerController {
 	) {
 		log.info("GET /developers HTTP/1.1");
 
-		return dmakerService.editDeveloper(memberId, request);
+		return dMakerService.editDeveloper(memberId, request);
 	}
 
 	@DeleteMapping("/developer/{memberId}")
 	public DeveloperDetailDto deleteDeveloper(
 		@PathVariable final String memberId) {
-		return dmakerService.deleteDeveloper(memberId);
+		return dMakerService.deleteDeveloper(memberId);
 	}
 }
