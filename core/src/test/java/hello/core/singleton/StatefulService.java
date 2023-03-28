@@ -13,10 +13,4 @@ public class StatefulService {
 		return price;
 	}
 
-	public int fixedOrder(String name, int price) {
-		System.out.println("name = " + name + ", price = " + price);
-
-		return price;
-	}
-
 }
