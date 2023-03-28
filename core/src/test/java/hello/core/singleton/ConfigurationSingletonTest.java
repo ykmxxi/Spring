@@ -32,4 +32,14 @@ public class ConfigurationSingletonTest {
 		assertThat(orderService.getMemberRepository()).isSameAs(memberRepository);
 	}
 
+	@Test
+	void configurationDeep() {
+		ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+
+		AppConfig bean = ac.getBean(AppConfig.class);
+		System.out.println("bean = " + bean.getClass());
+		// 순수한 클래스라면 class hello.core.AppConfig 로 출력되어야 하는데...
+		// bean = class hello.core.AppConfig$$EnhancerBySpringCGLIB$$e9b74e74 로 출력된다.
+	}
+
 }
