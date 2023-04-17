@@ -19,7 +19,6 @@ public class AutowiredTest {
 
 	}
 
-	@Component
 	static class TestBean {
 
 		// Member 클래스는 스프링 빈이 아님!!!
