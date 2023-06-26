@@ -18,6 +18,18 @@ class UncheckedAppTest {
 			.isInstanceOf(RuntimeException.class);
 	}
 
+	@Test
+	void printEx() {
+		Controller controller = new Controller();
+		try {
+			controller.request();
+		} catch (Exception e) {
+			// printStackTrace()는 System.out을 이용해 출력하므로 로그를 활용하자
+			// e.printStackTrace();
+			log.info("ex", e);
+		}
+	}
+
 	static class Controller {
 
 		Service service = new Service();
