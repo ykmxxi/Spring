@@ -1,4 +1,4 @@
-package hello.jdbc.repository.ex;
+package hello.jdbc.repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
