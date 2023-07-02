@@ -6,10 +6,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
 
-import hello.itemservice.config.MemoryConfig;
+import hello.itemservice.config.JdbcTemplateV3Config;
 import hello.itemservice.repository.ItemRepository;
 
-@Import(MemoryConfig.class)
+// @Import(MemoryConfig.class)
+// @Import(JdbcTemplateV1Config.class)
+// @Import(JdbcTemplateV2Config.class)
+@Import(JdbcTemplateV3Config.class)
 @SpringBootApplication(scanBasePackages = "hello.itemservice.web")
 public class ItemServiceApplication {
 
