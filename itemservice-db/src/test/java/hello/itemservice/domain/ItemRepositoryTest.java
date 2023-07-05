@@ -5,25 +5,24 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
+import org.springframework.transaction.annotation.Transactional;
 
 import hello.itemservice.repository.ItemRepository;
 import hello.itemservice.repository.ItemSearchCond;
 import hello.itemservice.repository.ItemUpdateDto;
 import hello.itemservice.repository.memory.MemoryItemRepository;
 
+@Transactional
 @SpringBootTest
 class ItemRepositoryTest {
 
 	@Autowired
 	ItemRepository itemRepository;
 
+	/*
 	// 트랜잭션 관련 코드
 	@Autowired
 	PlatformTransactionManager transactionManager;
@@ -34,6 +33,7 @@ class ItemRepositoryTest {
 		// 트랜잭션 시작
 		status = transactionManager.getTransaction(new DefaultTransactionDefinition());
 	}
+	 */
 
 	@AfterEach
 	void afterEach() {
@@ -42,7 +42,7 @@ class ItemRepositoryTest {
 			((MemoryItemRepository)itemRepository).clearStore();
 		}
 		// 트랜잭션 롤백
-		transactionManager.rollback(status);
+		//transactionManager.rollback(status);
 	}
 
 	@Test
