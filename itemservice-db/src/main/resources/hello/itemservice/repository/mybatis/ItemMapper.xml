@@ -4,7 +4,7 @@
 <mapper namespace="hello.itemservice.repository.mybatis.ItemMapper">
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
-        insert into item (item_name, price, quantity);
+        insert into item (item_name, price, quantity)
         values (#{itemName}, #{price}, #{quantity})
     </insert>
 
@@ -24,7 +24,7 @@
 
     <select id="findAll" resultType="Item">
         select id, item_name, price, quantity
-        from item;
+        from item
         <where>
             <if test="itemName != null and itemName != ''">
                 and item_name like concat('%', #{itemName}, '%')
