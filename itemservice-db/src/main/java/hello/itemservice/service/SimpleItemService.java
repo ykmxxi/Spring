@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Service
 @RequiredArgsConstructor
-public class ItemServiceV2 implements ItemService {
+public class SimpleItemService implements ItemService {
 
 	private final SpringDataJpaItemRepository itemRepository;
 
