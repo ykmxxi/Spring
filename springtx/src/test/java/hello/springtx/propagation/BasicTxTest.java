@@ -54,4 +54,36 @@ class BasicTxTest {
 		log.info("트랜잭션 롤백 완료");
 	}
 
+	@DisplayName("트랜잭션 두개 사용: 모두 커밋")
+	@Test
+	void double_commit() {
+		log.info("트랜잭션1 시작");
+		TransactionStatus tx1 = txManager.getTransaction(new DefaultTransactionAttribute());
+
+		log.info("트랜잭션1 커밋 시작");
+		txManager.commit(tx1);
+
+		log.info("트랜잭션2 시작");
+		TransactionStatus tx2 = txManager.getTransaction(new DefaultTransactionAttribute());
+
+		log.info("트랜잭션2 커밋 시작");
+		txManager.commit(tx2);
+	}
+
+	@DisplayName("트랜잭션 두개 사용: 커밋, 롤백")
+	@Test
+	void double_commit_rollback() {
+		log.info("트랜잭션1 시작");
+		TransactionStatus tx1 = txManager.getTransaction(new DefaultTransactionAttribute());
+
+		log.info("트랜잭션1 커밋 시작");
+		txManager.commit(tx1);
+
+		log.info("트랜잭션2 시작");
+		TransactionStatus tx2 = txManager.getTransaction(new DefaultTransactionAttribute());
+
+		log.info("트랜잭션2 롤백 시작");
+		txManager.rollback(tx2);
+	}
+
 }
