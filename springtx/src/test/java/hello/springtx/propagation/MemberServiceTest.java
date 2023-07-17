@@ -70,7 +70,7 @@ class MemberServiceTest {
 	@Test
 	void singleTx() {
 		// given
-		String username = "outerTxOff_success";
+		String username = "singleTx";
 
 		// when
 		memberService.joinV1(username);
@@ -80,5 +80,23 @@ class MemberServiceTest {
 		assertTrue(logRepository.find(username).isPresent());
 	}
 
+	/**
+	 * memberService 	@Transactional: ON
+	 * memberRepository	@Transactional: ON
+	 * logRepository	@Transactional: ON
+	 */
+	@DisplayName("서비스 계층 트랜잭션 적용: 단일 트랜잭션")
+	@Test
+	void outerTxOn_success() {
+		// given
+		String username = "outerTxOn_success";
+
+		// when
+		memberService.joinV1(username);
+
+		// then: 모든 데이터가 정상 저장
+		assertTrue(memberRepository.find(username).isPresent());
+		assertTrue(logRepository.find(username).isPresent());
+	}
 
 }
