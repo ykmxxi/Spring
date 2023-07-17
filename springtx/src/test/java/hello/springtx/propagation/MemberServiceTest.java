@@ -99,4 +99,24 @@ class MemberServiceTest {
 		assertTrue(logRepository.find(username).isPresent());
 	}
 
+	/**
+	 * memberService 	@Transactional: ON
+	 * memberRepository	@Transactional: ON
+	 * logRepository	@Transactional: ON, RuntimeException
+	 */
+	@DisplayName("서비스 계층 트랜잭션 적용: 예외 발생, 전체 롤백")
+	@Test
+	void outerTxOn_fail() {
+		// given
+		String username = "로그예외_outerTxOn_fail";
+
+		// when
+		assertThatThrownBy(() -> memberService.joinV1(username))
+			.isInstanceOf(RuntimeException.class);
+
+		// then: 모든 데이터가 롤백
+		assertTrue(memberRepository.find(username).isEmpty());
+		assertTrue(logRepository.find(username).isEmpty());
+	}
+
 }
