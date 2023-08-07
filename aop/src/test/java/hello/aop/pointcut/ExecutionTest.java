@@ -69,4 +69,35 @@ public class ExecutionTest {
 		assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isFalse();
 	}
 
+	// 패키지 매칭
+	@Test
+	void packageExactMatch1() {
+		pointcut.setExpression("execution(* hello.aop.member.MemberServiceImpl.hello(..))");
+		assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isTrue();
+	}
+
+	@Test
+	void packageExactMatch2() {
+		pointcut.setExpression("execution(* hello.aop.member.*.*(..))");
+		assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isTrue();
+	}
+
+	@Test
+	void packageExactFalse() {
+		pointcut.setExpression("execution(* hello.aop.*.*(..))");
+		assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isFalse();
+	}
+
+	@Test
+	void packageMatchSubPackage1() {
+		pointcut.setExpression("execution(* hello.aop.member..*.*(..))");
+		assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isTrue();
+	}
+
+	@Test
+	void packageMatchSubPackage2() {
+		pointcut.setExpression("execution(* hello.aop..*.*(..))");
+		assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isTrue();
+	}
+
 }
