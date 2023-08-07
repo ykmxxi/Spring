@@ -44,4 +44,29 @@ public class ExecutionTest {
 		assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isTrue();
 	}
 
+	// 이름 매칭
+	@Test
+	void nameMatch() {
+		pointcut.setExpression("execution(* hello(..))");
+		assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isTrue();
+	}
+
+	@Test
+	void nameMatchStar1() {
+		pointcut.setExpression("execution(* hel*(..))");
+		assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isTrue();
+	}
+
+	@Test
+	void nameMatchStar2() {
+		pointcut.setExpression("execution(* *el*(..))");
+		assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isTrue();
+	}
+
+	@Test
+	void nameMatchFalse() {
+		pointcut.setExpression("execution(* hi(..))");
+		assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isFalse();
+	}
+
 }
