@@ -36,3 +36,12 @@ public class ExecutionTest {
 		pointcut.setExpression("execution(public String hello.aop.member.MemberServiceImpl.hello(String))");
 		assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isTrue();
 	}
+
+	@Test
+	@DisplayName("가장 많이 생략한 포인트컷 매칭")
+	void allMatch() {
+		pointcut.setExpression("execution(* *(..))");
+		assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isTrue();
+	}
+
+}
