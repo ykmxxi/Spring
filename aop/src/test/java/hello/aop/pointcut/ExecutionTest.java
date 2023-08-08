@@ -113,4 +113,22 @@ public class ExecutionTest {
 		assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isTrue();
 	}
 
+	@Test
+	void typeMatchInternal() throws NoSuchMethodException {
+		pointcut.setExpression("execution(* hello.aop.member.MemberServiceImpl.*(..))");
+
+		Method internalMethod = MemberServiceImpl.class.getMethod("internal", String.class);
+		assertThat(pointcut.matches(internalMethod, MemberServiceImpl.class)).isTrue();
+	}
+
+	// 부모 타입에 있는 메서드만 허용
+	// 포인트컷으로 지정한 MemberService 는 internal 이라는 이름의 메서드가 없다
+	@Test
+	void typeMatchNoSuperTypeMethodFalse() throws NoSuchMethodException {
+		pointcut.setExpression("execution(* hello.aop.member.MemberService.*(..))");
+
+		Method internalMethod = MemberServiceImpl.class.getMethod("internal", String.class);
+		assertThat(pointcut.matches(internalMethod, MemberServiceImpl.class)).isFalse();
+	}
+
 }
